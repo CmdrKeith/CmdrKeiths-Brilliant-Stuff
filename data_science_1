@@ -1,0 +1,33 @@
+# This is a stats challenge using a csv file to compare the grades
+# of fall students to spring students taking the same class.
+#
+# Keith Haddrill, aka CmdrKeith
+#
+
+import csv
+import statistics
+
+with open("sample_grades.csv") as gradeSet:
+    csvreader = csv.reader(gradeSet)
+
+    rows = []
+    for row in csvreader:
+        rows.append(row)
+
+
+fallGrades = []
+springGrades = []
+
+for i in range(0, len(rows)-1):
+    num = float(rows[i][2])
+    if rows[i][1] == "Fall 2016":
+        fallGrades.append(num)
+    else:
+        springGrades.append(num)
+
+
+print("\t\tFall 2010\tSpring 2016")
+print("Mean\t", round(statistics.mean(fallGrades), 2), "\t\t", round(statistics.mean(springGrades),2))
+
+print("Median\t", statistics.median(fallGrades), "\t\t", statistics.median(springGrades))
+print("Median\t", round(statistics.stdev(fallGrades), 2), "\t\t", round(statistics.stdev(springGrades), 2))
